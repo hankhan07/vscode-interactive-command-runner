@@ -5,7 +5,16 @@ I created this extension to wrap some commands with interactive inputs of vscode
 The example config file below should explain you how it works. Just update it for your needs. Requires restart after changes
 
 ## Features
-Example config:
+
+## Requirements
+
+## Extension Settings
+
+Only possible input types for now 
+
+`multipleSelector,textInput`
+
+For example:
 ```yaml
 [
     {
@@ -39,7 +48,7 @@ Example config:
     {
         "category": "GIT",
         "label": "Merge From",
-        "command": "&& git merge --no-ff {targetBranch}",
+        "command": "git merge --no-ff {targetBranch}",
         "args": [
             {
                 "name": "targetBranch",
@@ -52,20 +61,6 @@ Example config:
 ]
 ```
 
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Only possible input types for now 
-
-`multipleSelector,textInput`
-
-For example:
-
-This extension contributes the following settings:
-
 ## Known Issues
 
 Config file change requires restart.
@@ -75,12 +70,10 @@ Config file change requires restart.
 Readme file written
 ### 0.0.4
 Readme fixes
+### 0.0.4
+Readme..
 
 ---
-
-## Following extension guidelines
-
-<!-- * [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines) -->
 
 ## For more information
 
