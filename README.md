@@ -71,9 +71,9 @@ This extension contributes the following settings:
 Config file change requires restart.
 
 ## Release Notes
-### 1.0.3
+### 0.0.3
 Readme file written
-### 1.0.4
+### 0.0.4
 Readme fixes
 
 ---
