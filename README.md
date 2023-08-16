@@ -1,29 +1,50 @@
-# gitbatcher README
+# Interactive Command Batcher
 
-Just create your needs by looking at example data in config file.
+I created this extension to wrap some commands with interactive inputs of vscode in an area to make use of my development env more GUI style and faster.
+
+The example config file below should explain you how it works. Just update it for your needs. Requires restart after changes
 
 ## Features
 
 [
     {
-        "label": "Example Command",
-        "category":"Test",
-        "command": "r={continueProcess}; if [ \"$r\" -eq 1 ]; then git fetch && git checkout {targetBranch} && git commit -m \"{commitMessage}\"; else echo \"You selected NO\"; fi",
+        "category": "Run",
+        "label": "Run API",
+        "command": "/app/sh/api_debug.sh"
+    },
+    {
+        "category": "Run",
+        "label": "Run UI",
+        "command": "/app/sh/start/ui_debug.sh"
+    },
+    {
+        "category": "DOTNET",
+        "label": "Add Nuget Package",
+        "command": "cd {targetPath} && dotnet add package {packageName}",
+        "args": [
+            {
+                "name": "targetPath",
+                "type": "multipleSelector",
+                "sourceCommand": "find . -name \"*.csproj\" -exec dirname {} \\; | uniq",
+                "placeHolder": "Select Branch To Merge From:"
+            },
+            {
+                "name": "packageName",
+                "type": "textInput",
+                "placeHolder": "Package to Add:"
+            }
+        ]
+    },    
+    {
+        "category": "GIT",
+        "label": "Merge From",
+        "command": "git fetch && git merge --no-ff {targetBranch}",
         "args": [
             {
                 "name": "targetBranch",
-                "type": "branchSelector",
-                "placeHolder": "Select Target Branch!"
-            },
-            {
-                "name": "continueProcess",
-                "type": "yesNoDialog",
-                "prompt": "Do you want to commit?"
-            },
-            {
-                "name": "commitMessage",
-                "type": "textInput",
-                "prompt": "Please enter a commit message"
+                "type": "multipleSelector",
+                "sourceCommand": "git fetch && git branch -r",
+                "placeHolder": "Select Branch To Merge From:"
             }
         ]
     }

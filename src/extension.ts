@@ -22,26 +22,50 @@ class GitCommandProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
         if (!element) {
             const configPath = path.join(rootPath || '', '.vscode', 'interactiveCommands.json');
             if (!fs.existsSync(configPath)) {
-                const defaultConfig = {
-                    label: 'Example Command',
-                    categgory: 'Test',
-                    command:
-                        'r={continueProcess}; if [ "$r" -eq 1 ]; then git fetch && git checkout {targetBranch} && git commit -m "{commitMessage}"; else echo "You selected NO"; fi',
-                    args: [
-                        {
-                            name: 'targetBranch',
-                            type: 'multipleSelector',
-                            sourceCommand: "git branch -r",
-                            placeHolder: 'Select A Branch!',
-                        },
-                        {
-                            name: 'commitMessage',
-                            type: 'textInput',
-                            prompt: 'Please enter a commit message',
-                        },
-                    ],
-                };
-                fs.writeFileSync(configPath, JSON.stringify([defaultConfig], null, 4));
+                const defaultConfig = [
+                    {
+                        category: 'Run',
+                        label: 'Run API',
+                        command: '/app/sh/api_debug.sh',
+                    },
+                    {
+                        category: 'Run',
+                        label: 'Run UI',
+                        command: '/app/sh/start/ui_debug.sh',
+                    },
+                    {
+                        category: 'DOTNET',
+                        label: 'Add Nuget Package',
+                        command: 'cd {targetPath} && dotnet add package {packageName}',
+                        args: [
+                            {
+                                name: 'targetPath',
+                                type: 'multipleSelector',
+                                sourceCommand: 'find . -name "*.csproj" -exec dirname {} \\; | uniq',
+                                placeHolder: 'Select Branch To Merge From:',
+                            },
+                            {
+                                name: 'packageName',
+                                type: 'textInput',
+                                placeHolder: 'Package to Add:',
+                            },
+                        ],
+                    },
+                    {
+                        category: 'GIT',
+                        label: 'Merge From',
+                        command: 'git fetch && git merge --no-ff {targetBranch}',
+                        args: [
+                            {
+                                name: 'targetBranch',
+                                type: 'multipleSelector',
+                                sourceCommand: 'git fetch && git branch -r',
+                                placeHolder: 'Select Branch To Merge From:',
+                            },
+                        ],
+                    },
+                ];
+                fs.writeFileSync(configPath, JSON.stringify(defaultConfig, null, 4));
             }
 
             const configContent = fs.readFileSync(configPath, 'utf-8');
