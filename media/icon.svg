@@ -1,7 +1,0 @@
-<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
-    <!-- Left Play Button -->
-    <polygon points="24,16 72,64 24,112" fill="#fff" />
-
-    <!-- Right Play Button, merged a bit with the left button -->
-    <polygon points="64,16 112,64 64,112" fill="#fff" />
-</svg>

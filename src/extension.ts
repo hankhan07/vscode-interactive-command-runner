@@ -20,7 +20,7 @@ class GitCommandProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
     async getChildren(element?: CategoryTreeItem): Promise<vscode.TreeItem[]> {
         if (!element) {
-            const configPath = path.join(rootPath || '', '.vscode', 'interactiveBatcher.json');
+            const configPath = path.join(rootPath || '', '.vscode', 'interactiveCommands.json');
             if (!fs.existsSync(configPath)) {
                 const defaultConfig = {
                     label: 'Example Command',
