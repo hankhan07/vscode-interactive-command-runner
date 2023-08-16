@@ -54,7 +54,7 @@ class GitCommandProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
                     {
                         category: 'GIT',
                         label: 'Merge From',
-                        command: 'git fetch && git merge --no-ff {targetBranch}',
+                        command: 'git merge --no-ff {targetBranch}',
                         args: [
                             {
                                 name: 'targetBranch',
