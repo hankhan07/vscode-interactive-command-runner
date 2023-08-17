@@ -42,7 +42,7 @@ class GitCommandProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
                                 name: 'targetPath',
                                 type: 'multipleSelector',
                                 sourceCommand: 'find . -name "*.csproj" -exec dirname {} \\; | uniq',
-                                placeHolder: 'Select Branch To Merge From:',
+                                placeHolder: 'Select Target To Install Package:',
                             },
                             {
                                 name: 'packageName',
@@ -126,7 +126,6 @@ enum ArgumentType {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-    vscode.window.showInformationMessage(`GitBatcher Initialising...`);
     const treeDataProvider = new GitCommandProvider(context);
     vscode.window.registerTreeDataProvider('gitCustomCommands', treeDataProvider);
 }
